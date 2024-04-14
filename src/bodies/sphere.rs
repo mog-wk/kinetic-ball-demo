@@ -7,9 +7,10 @@ use sdl2::video::Window;
 use sdl2::pixels::Color;
 
 //#[derive(PhysicBody)]
+#[derive(Debug)]
 pub struct Sphere {
     // physic options
-    center_pos: (i32, i32),
+    position: (i32, i32), // center position
     radius: i32,
     velocity: (i32, i32),
 
@@ -19,9 +20,9 @@ pub struct Sphere {
 }
 impl Sphere {
     pub fn update(&mut self) {
-        self.center_pos = (
-            self.center_pos.0 + self.velocity.0,
-            self.center_pos.1 + self.velocity.1,
+        self.position = (
+            self.position.0 + self.velocity.0,
+            self.position.1 + self.velocity.1,
         );
 
         //self.velocity = (self.drag.0, self.drag.1);
@@ -30,14 +31,14 @@ impl Sphere {
     pub fn render(&self, canvas: &mut Canvas<Window>) {
         canvas.set_draw_color(self.fill_color);
         shapes::draw_circle(canvas,
-            self.center_pos.0,
-            self.center_pos.1,
+            self.position.0,
+            self.position.1,
             self.radius
         );
         canvas.set_draw_color(self.border_color);
         shapes::draw_circunference(canvas,
-            self.center_pos.0,
-            self.center_pos.1,
+            self.position.0,
+            self.position.1,
             self.radius
         );
     }
@@ -53,7 +54,7 @@ impl Sphere {
 impl std::default::Default for Sphere {
     fn default() -> Self {
         Self {
-            center_pos: (
+            position: (
                 config::Window::WIDTH as i32 / 2,
                 config::Window::HEIGHT as i32 / 2,
             ),

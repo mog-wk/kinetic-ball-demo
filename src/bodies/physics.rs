@@ -1,7 +1,6 @@
 
 pub trait StaticBody {
     fn get_position(&self) -> (i32, i32);
-    fn update(&self);
 }
 
 pub trait PhysicBody {

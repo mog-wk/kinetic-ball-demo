@@ -25,6 +25,8 @@ fn main() -> Result<(), error::Error> {
     let mut canvas = app_window.into_canvas()
         .build()?;
 
+    let canvas_box = bodies::rect::CanvasBox::default();
+
     // dev test 
 
     let mut sp = bodies::sphere::new();
@@ -50,6 +52,8 @@ fn main() -> Result<(), error::Error> {
         // BG
         canvas.set_draw_color(sdl2::pixels::Color::RGB(0, 0, 0));
         canvas.clear();
+
+        canvas_box.render(&mut canvas);
 
 
         sp.render(&mut canvas);
